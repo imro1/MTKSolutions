@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MTKSolutions – Handyman Services | Montréal, QC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #1D6FA4;
+      --blue-light: #EAF2F9;
+      --text: #1a1a1a;
+      --text-secondary: #555;
+      --text-tertiary: #888;
+      --border: #e2e2e2;
+      --bg: #fff;
+      --bg-alt: #F7F9FC;
+      --radius: 10px;
+      --radius-sm: 7px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 48px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      letter-spacing: -0.5px;
+    }
+    .nav-logo span { color: var(--blue); }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a {
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-cta {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      background: var(--blue);
+      color: #fff;
+      padding: 9px 20px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      border: none;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.88; }
+    .nav-mobile-toggle { display: none; font-size: 24px; cursor: pointer; color: var(--text); background: none; border: none; }
+
+    /* HERO */
+    .hero {
+      padding: 80px 48px 72px;
+      background: var(--bg-alt);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .hero-text { max-width: 500px; }
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 48px;
+      line-height: 1.12;
+      margin-bottom: 18px;
+      font-weight: 400;
+    }
+    .hero p {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 32px;
+      max-width: 420px;
+    }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      padding: 13px 26px;
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.88; }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      padding: 13px 26px;
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--blue); color: var(--blue); }
+    .hero-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .badge-circle {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: var(--blue);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+    .badge-circle .num { font-family: 'DM Serif Display', serif; font-size: 34px; line-height: 1; }
+    .badge-circle .lbl { font-size: 10px; font-weight: 500; letter-spacing: 0.5px; opacity: 0.85; margin-top: 2px; }
+    .badge-sub { font-size: 12px; color: var(--text-tertiary); }
+
+    /* SERVICES */
+    .services {
+      padding: 64px 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 32px;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .service-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 22px;
+      transition: box-shadow 0.2s;
+    }
+    .service-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+    .service-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-sm);
+      background: var(--blue-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      color: var(--blue);
+      font-size: 20px;
+    }
+    .service-card h3 { font-size: 15px; font-weight: 500; margin-bottom: 7px; }
+    .service-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+    /* WHY */
+    .why {
+      padding: 64px 48px;
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .why h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 34px;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .why > div:first-child p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+    .why-points { display: flex; flex-direction: column; gap: 12px; }
+    .why-point {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+    }
+    .why-point i { font-size: 18px; color: var(--blue); margin-top: 1px; flex-shrink: 0; }
+    .why-point-text p:first-child { font-size: 14px; font-weight: 500; }
+    .why-point-text p:last-child { font-size: 13px; color: var(--text-secondary); }
+
+    /* CONTACT */
+    .contact { padding: 64px 48px; }
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+    .contact h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 30px;
+      font-weight: 400;
+      margin-bottom: 10px;
+    }
+    .contact .intro-text { font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 24px; }
+    .contact-details { display: flex; flex-direction: column; gap: 14px; }
+    .contact-row { display: flex; align-items: center; gap: 12px; font-size: 14px; }
+    .contact-row i { font-size: 18px; color: var(--blue); width: 20px; }
+
+    .form-col { display: flex; flex-direction: column; gap: 12px; }
+    .form-col input,
+    .form-col textarea,
+    .form-col select {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      padding: 11px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--bg-alt);
+      color: var(--text);
+      width: 100%;
+      transition: border-color 0.2s;
+      appearance: none;
+    }
+    .form-col input:focus,
+    .form-col textarea:focus,
+    .form-col select:focus {
+      outline: none;
+      border-color: var(--blue);
+      background: #fff;
+    }
+    .form-col textarea { resize: vertical; height: 100px; }
+    .form-col button {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      padding: 13px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: opacity 0.2s;
+    }
+    .form-col button:hover { opacity: 0.88; }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border);
+      padding: 20px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--text-tertiary);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .footer-logo { font-family: 'DM Serif Display', serif; font-size: 17px; color: var(--text); }
+    .footer-logo span { color: var(--blue); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      .nav-mobile-toggle { display: block; }
+
+      .hero { flex-direction: column; padding: 48px 20px 40px; text-align: center; }
+      .hero h1 { font-size: 34px; }
+      .hero p { margin-left: auto; margin-right: auto; }
+      .hero-btns { justify-content: center; }
+      .hero-badge { margin-top: 8px; }
+
+      .services { padding: 48px 20px; }
+      .services-grid { grid-template-columns: 1fr; }
+
+      .why { padding: 48px 20px; grid-template-columns: 1fr; gap: 28px; }
+
+      .contact { padding: 48px 20px; }
+      .contact-inner { grid-template-columns: 1fr; gap: 32px; }
+
+      footer { padding: 16px 20px; justify-content: center; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">MTK<span>Solutions</span></div>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#why">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get a quote</button>
+    <button class="nav-mobile-toggle" aria-label="Menu">&#9776;</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Serving Montréal &amp; surrounding area</div>
+      <h1>Reliable repairs done right, the first time.</h1>
+      <p>MTKSolutions provides trusted handyman services for homeowners — from plumbing fixes to yard work and beyond.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Request a service</button>
+        <button class="btn-secondary" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">See what we fix</button>
+      </div>
+    </div>
+    <div class="hero-badge">
+      <div class="badge-circle">
+        <span class="num">10+</span>
+        <span class="lbl">yrs experience</span>
+      </div>
+      <span class="badge-sub">trusted &amp; local</span>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="section-label">What we do</div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon"><i class="ti ti-tool" aria-hidden="true"></i></div>
+        <h3>General repairs</h3>
+        <p>Doors, drywall, fixtures, and everything in between — handled quickly and cleanly.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="ti ti-droplet" aria-hidden="true"></i></div>
+        <h3>Plumbing</h3>
+        <p>Leaks, clogs, installations — no job too small or too messy. We fix it right.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="ti ti-leaf" aria-hidden="true"></i></div>
+        <h3>Yard &amp; outdoor</h3>
+        <p>Lawn care, cleanup, fencing, and seasonal outdoor tasks taken care of.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="why" id="why">
+    <div>
+      <h2>Why choose MTKSolutions?</h2>
+      <p>We show up on time, communicate clearly, and leave your home cleaner than we found it. No surprises — just quality work you can count on.</p>
+    </div>
+    <div class="why-points">
+      <div class="why-point">
+        <i class="ti ti-clock-check" aria-hidden="true"></i>
+        <div class="why-point-text">
+          <p>On-time, every time</p>
+          <p>We respect your schedule and always stick to it.</p>
+        </div>
+      </div>
+      <div class="why-point">
+        <i class="ti ti-shield-check" aria-hidden="true"></i>
+        <div class="why-point-text">
+          <p>Fully insured</p>
+          <p>Work done safely with complete peace of mind for you.</p>
+        </div>
+      </div>
+      <div class="why-point">
+        <i class="ti ti-currency-dollar" aria-hidden="true"></i>
+        <div class="why-point-text">
+          <p>Transparent pricing</p>
+          <p>No hidden fees — you know the full cost upfront.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="section-label">Get in touch</div>
+    <div class="contact-inner">
+      <div>
+        <h2>Let's get the job done.</h2>
+        <p class="intro-text">Reach out to book a service or ask a question. We typically respond within a few hours.</p>
+        <div class="contact-details">
+          <div class="contact-row"><i class="ti ti-phone" aria-hidden="true"></i> (514) 555-0100</div>
+          <div class="contact-row"><i class="ti ti-mail" aria-hidden="true"></i> contact@mtksolutions.ca</div>
+          <div class="contact-row"><i class="ti ti-map-pin" aria-hidden="true"></i> Montréal, QC &amp; surrounding area</div>
+        </div>
+      </div>
+      <form class="form-col" onsubmit="handleSubmit(event)">
+        <input type="text" placeholder="Your name" required />
+        <input type="text" placeholder="Phone or email" required />
+        <select required>
+          <option value="">Type of service…</option>
+          <option>General repairs</option>
+          <option>Plumbing</option>
+          <option>Yard &amp; outdoor</option>
+          <option>Other</option>
+        </select>
+        <textarea placeholder="Describe the job briefly…"></textarea>
+        <button type="submit">Send request</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">MTK<span>Solutions</span></div>
+    <span>© 2026 MTKSolutions. Montréal, QC. All rights reserved.</span>
+  </footer>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      btn.textContent = 'Sent! We\'ll be in touch.';
+      btn.style.background = '#2a9d6f';
+      btn.disabled = true;
+    }
+  </script>
+
+</body>
+</html>
